@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f4efe5" />
-  <meta name="description" content="A neutral, filterable guide to Sunday dance, music, and theater options in Manhattan and Brooklyn on July 26, 2026." />
+  <meta name="description" content="A neutral, filterable guide to Sunday dance, movement, music, and theater options in New York City on July 26, 2026." />
   <meta property="og:title" content="Sunday in NYC · July 26" />
-  <meta property="og:description" content="Dance, music, and theater options in Manhattan and Brooklyn—grouped by format, never ranked." />
+  <meta property="og:description" content="Fifty-plus dance, music, movement, and theater options—grouped by format, never ranked." />
   <meta property="og:type" content="website" />
   <title>Sunday in NYC · July 26</title>
   <link rel="stylesheet" href="styles.css" />
@@ -16,12 +16,18 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <header class="shell">
-    <div class="eyebrow">Sunday · July 26, 2026</div>
-    <h1>Dance, music<br />& theater in NYC</h1>
-    <p class="lede">Afternoon and early-evening options in Manhattan and Brooklyn, plus a small nearby-Queens section. Nothing is ranked or preselected: categories are alphabetical and cards are ordered by start time.</p>
-    <div class="method-note" title="All event details were checked on Sunday morning.">
+    <div class="topline">
+      <div class="eyebrow">Sunday · July 26, 2026</div>
+      <button class="copy-link" type="button" id="copyPageLink" aria-label="Copy this page link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 15l6-6M7.5 18.5l-2 2a3.54 3.54 0 0 1-5-5l4-4a3.54 3.54 0 0 1 5 0M16.5 5.5l2-2a3.54 3.54 0 0 1 5 5l-4 4a3.54 3.54 0 0 1-5 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>Copy page link</span>
+      </button>
+    </div>
+    <h1>Dance, movement<br />& Sunday plans</h1>
+    <p class="lede">Afternoon and early-evening options in Manhattan and Brooklyn, plus a few Queens possibilities. This is deliberately not a ranking: categories are alphabetical, cards are ordered by start time, and nothing is selected by default.</p>
+    <div class="method-note" title="Event details were checked on Sunday morning.">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
-      Checked Sunday morning · use each source link for day-of changes
+      Checked Sunday morning · organizer links are included for day-of changes
     </div>
   </header>
 
@@ -30,37 +36,20 @@
       <div class="controls" aria-label="Filter options">
         <div class="field search">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <label class="sr-only" for="search" hidden>Search</label>
           <input id="search" aria-label="Search options" type="search" placeholder="Search music, neighborhood, venue…" autocomplete="off" />
         </div>
-        <div class="field">
-          <label for="borough" hidden>Borough</label>
-          <select id="borough" aria-label="Filter by borough">
-            <option value="all">All locations</option>
-            <option value="manhattan">Manhattan</option>
-            <option value="brooklyn">Brooklyn</option>
-            <option value="queens">Nearby Queens</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="cost" hidden>Cost</label>
-          <select id="cost" aria-label="Filter by cost">
-            <option value="all">Any cost</option>
-            <option value="free">Free / suggested</option>
-            <option value="rsvp">Free RSVP</option>
-            <option value="ticketed">Ticketed</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="setting" hidden>Setting</label>
-          <select id="setting" aria-label="Filter by setting">
-            <option value="all">Any setting</option>
-            <option value="outdoor">Outdoor</option>
-            <option value="indoor">Indoor</option>
-            <option value="mixed">Indoor + outdoor</option>
-            <option value="boat">Boat</option>
-          </select>
-        </div>
+        <div class="field"><select id="borough" aria-label="Filter by location">
+          <option value="all">All locations</option><option value="manhattan">Manhattan</option><option value="brooklyn">Brooklyn</option><option value="queens">Queens</option>
+        </select></div>
+        <div class="field"><select id="cost" aria-label="Filter by cost">
+          <option value="all">Any cost</option><option value="free">Free / suggested</option><option value="rsvp">Free RSVP</option><option value="ticketed">Ticketed</option>
+        </select></div>
+        <div class="field"><select id="setting" aria-label="Filter by setting">
+          <option value="all">Any setting</option><option value="outdoor">Outdoor</option><option value="indoor">Indoor</option><option value="mixed">Indoor + outdoor</option><option value="boat">Boat</option>
+        </select></div>
+        <div class="field"><select id="mode" aria-label="Filter by participation style">
+          <option value="all">Any participation</option><option value="learn">Lesson / workshop</option><option value="dance">Open dance floor</option><option value="move">Active / moving</option><option value="watch">Mostly watch / listen</option>
+        </select></div>
       </div>
       <div class="summary-row">
         <span id="resultCount">Loading options…</span>
@@ -71,26 +60,18 @@
 
   <main class="shell" id="options">
     <div id="categories"></div>
-    <div class="empty-state" id="emptyState">
-      <strong>No options match those filters.</strong><br />Try resetting one or more filters.
-    </div>
+    <div class="empty-state" id="emptyState"><strong>No options match those filters.</strong><br />Try resetting one or more filters.</div>
   </main>
 
   <div class="shortlist-bar" id="shortlistBar" aria-live="polite">
-    <div class="shortlist-copy"><strong id="shortlistCount">0 options selected</strong><span>Make a neutral shortlist to send.</span></div>
-    <div class="bar-actions">
-      <button class="bar-btn" id="clearShortlist" type="button">Clear</button>
-      <button class="bar-btn primary" id="shareShortlist" type="button">Share shortlist</button>
-    </div>
+    <div class="shortlist-copy"><strong id="shortlistCount">0 options selected</strong><span>Build a shortlist only after browsing.</span></div>
+    <div class="bar-actions"><button class="bar-btn" id="clearShortlist" type="button">Clear</button><button class="bar-btn primary" id="shareShortlist" type="button">Share shortlist</button></div>
   </div>
 
-  <footer>
-    <div class="shell">
-      <p><strong>Planning note:</strong> Outdoor programs can change for heat, weather, or capacity. Ticket prices and availability can also move during the day. Source links go to the organizer or the strongest current listing.</p>
-      <p>Built as a neutral comparison page: no scores, recommendations, featured cards, or default selections.</p>
-    </div>
-  </footer>
-  <script src="events.js"></script>
-  <script src="app.js"></script>
+  <footer><div class="shell">
+    <p><strong>Planning note:</strong> Outdoor programs can change for heat, weather, or capacity. Ticket prices and availability can move during the day. Every card links to the organizer or strongest current listing.</p>
+    <p>Built as a neutral comparison page: no scores, recommendations, featured cards, or default selections.</p>
+  </div></footer>
+  <script src="events-1.js"></script><script src="events-2.js"></script><script src="events-3.js"></script><script src="events-4.js"></script><script src="app.js"></script>
 </body>
 </html>
